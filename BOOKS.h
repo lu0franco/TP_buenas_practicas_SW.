@@ -12,7 +12,7 @@ void LogData(book* m);
 void ShowData(book* m , int i);
 void SearchData(book* m);
 void GoodBye();
-//void tableformat();
+void tableformat();
 void SaveToFileData(book* m , int Cantbooks);
 void LoadFromFileData(book* m , int Cantbooks);
 void LogData(book* m) {
@@ -113,16 +113,6 @@ void SearchData(book* m) {
 	}while (Menuaux != 3);
 	
 }
-
-//void tableformat(){
-//	printf("el formato será: \n");
-//	printf("x)-> índice del stock");
-//	printf("Título:-> Título del libro");
-//	printf("Escritor:-> Autor del libro");
-//	printf("Año del publicación:-> año de publicaión del libro del libro");
-//	printf("____________________________________________________________________________________________________\n");
-//return;
-//}
 
 void GoodBye() {
 	

@@ -8,7 +8,7 @@ using namespace std;
 
 int main(int argc, char *argv[]) {
 
-	int Menu;
+	int Menu; //menu de seleccion de logica del programa
 	do {
 	printf (" \n");
 	printf ("_______________________________________________________________________________________________ \n");
@@ -25,40 +25,40 @@ int main(int argc, char *argv[]) {
 	
 	switch(Menu){
 	case 1:
-		if (bookCount < MAX) {
-			LogData(&stock[bookCount]);
+		if (bookCount < MAX) { //comprobamos que el stock de datos guardados no exceda el MAX definido en BOOK.h
+			LogData(&stock[bookCount]); //llamada a LogData en BOOKS_H.
 			bookCount++;
 		} else {
-			printf("Stock lleno\n");
+			printf("Stock lleno, no se cargaran datos\n"); //Si la cuenta de libros guardados es mayor al stock hacemos print de este mensaje
+			break;
 		}
 		printf (" \n");
-		printf("Datos cargados\n");
+		printf("Datos cargados\n"); //si aun hay espacio se cargaran datos por la funcion LogData y anunciaremos la carga con este print<<
 		break;
 	case 2:
 		printf("Tabla de datos de los libros:\n");
-		////tableformat();
 		for (int j = 0; j < bookCount; j++) {
-			ShowData(stock, j);
+			ShowData(stock, j); //llamada a ShowData en BOOKS_H.
 		}
 		printf (" \n");
 		printf("Datos mostrados correctamente \n");
 		break;
 	case 3:
-		SearchData(stock);
+		SearchData(stock); //llamada a SearchData en BOOKS_H.
 		printf (" \n");
 		printf("Búsqueda realizada \n");
 		break;
 	case 4:
 		printf ("Ha seleccionado guardar lista    \n");
-		SaveToFileData(stock ,bookCount);
+		SaveToFileData(stock ,bookCount);  //llamada a SaveToFileData en BOOKS_H.
 		break;
 	case 5:
 		printf ("Ha seleccionado cargar lista     \n");
-		LoadFromFileData(stock ,bookCount);
+		LoadFromFileData(stock ,bookCount);  //llamada a LoadFromFileData en BOOKS_H.
 		break;
 	case 6:
 		printf ("Usted ha elegido cerrar el programa, hasta luego.\n");
-		GoodBye();
+		GoodBye();  //llamada a GoodBye en BOOKS_H.
 		break;
 	}
 	}while (Menu != 6);
