@@ -1,12 +1,15 @@
 #ifndef BOOKS_H
 #define BOOKS_H
 
-#define MAX 20
+#define MAX 20 //definimos cantidad maxima de datos almacenados en struct
+//structura de libro
 struct book{
 	char Title [100];
 	char Writer [50];
 	int PublishYear;
 } stock [MAX];
+
+//variables y prototipos de funciones
 int bookCount = 0;
 void LogData(book* m);
 void ShowData(book* m , int i);
@@ -15,28 +18,27 @@ void GoodBye();
 void tableformat();
 void SaveToFileData(book* m , int Cantbooks);
 void LoadFromFileData(book* m , int Cantbooks);
+
+//Funcion de ingreso de datos al struct
 void LogData(book* m) {
 	char buffer[100];
-	
+	//ingreso de titulo
 	printf("Ingrese el Titulo del libro: ");
 	fgets(buffer, sizeof(buffer), stdin);
 	sscanf(buffer, "%21[^\n]", m->Title);  // Máximo 19 caracteres
 	
-	// Marca (Writer)
+	// ingreso de autor
 	printf("Ingrese el autor: ");
 	fgets(buffer, sizeof(buffer), stdin);
 	buffer[strcspn(buffer, "\n")] = 0;  // Eliminar '\n'
 	strncpy(m->Writer, buffer, sizeof(m->Writer) - 1);
 	m->Writer[sizeof(m->Writer) - 1] = '\0';
 	
-	// Corriente: positivo
+	//ingreso año de publicacion
 	int flagPublishYear;
-	
 	do {
 		printf("Ingrese el año de publicación, NOTA: solo se admiten valores positivos --> ");
 		fgets(buffer, sizeof(buffer), stdin);
-		
-		// Intentar convertir a float y validar que sea positivo
 		if (sscanf(buffer, "%d", &flagPublishYear) == 1 && flagPublishYear >= 0) {
 			m->PublishYear = flagPublishYear;
 			break;
@@ -48,6 +50,7 @@ void LogData(book* m) {
 	
 }
 
+//funcion de muestra de datos en struct
 void ShowData(book* m , int i) {
 	printf("%d)\n",i);
 	printf("Título: %s\n",m[i].Title);
@@ -56,9 +59,8 @@ void ShowData(book* m , int i) {
 	printf("______________________________\n");
 	
 }
-
+//funcion de busqeda de datos en struct
 void SearchData(book* m) {
-	
 	fflush(stdin);
 	int Menuaux;
 	do {
@@ -113,7 +115,7 @@ void SearchData(book* m) {
 	}while (Menuaux != 3);
 	
 }
-
+//funcion de mensaje de despedida
 void GoodBye() {
 	
 	printf(" _____  _________________  ___   _   _______ _____        _____ _____ _____ _____ ________  ___  ___   _____ \n");
@@ -126,6 +128,7 @@ void GoodBye() {
 	printf("EL PROGRAMA SE FINALIZO\n");
 	return;
 }
+//funcion de guardado de datos a archivo
 void SaveToFileData(book* m , int Cantbooks) {
 	//int i=-1;
 	char nameFile[15]="SavedList";
@@ -144,6 +147,7 @@ void SaveToFileData(book* m , int Cantbooks) {
 	
 	return;
 }
+//funcion de carga de datos desde archivo
 void LoadFromFileData(book* m , int CantbookesParam) {
 	char nameFile[20] = "SavedList.bin";
 	FILE *Filebin = fopen(nameFile, "rb");
